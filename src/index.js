@@ -41,16 +41,17 @@ let jokes = [
 
 // Get jokes
 const getRandomJokeJSON = (numberOfJokes) => {
-  const number = Math.floor(Math.random() * 10);
+  const number = Math.floor(Math.random() * numberOfJokes);
   return JSON.stringify(jokes[number]);
 }
 
 // When program loads...
 const onRequest = (request, response) => {
-const parseURL = url.parse(request.url);
-const pathname = parseURL.pathname;
-console.log("parsedUrl=", parseURL);
-console.log("pathname=", pathname);
+  
+ const parsedUrl = url.parse(request.url);
+ const pathname = parsedUrl.pathname;
+ console.log("parsedUrl=", parsedUrl);
+ console.log("pathname=", pathname);
 
 if(pathname == "/random-joke"){
     response.writeHead(200, { 'Content-Type': 'text/html'});
